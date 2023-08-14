@@ -1,0 +1,22 @@
+.transition{
+    transition: 0.5s;
+    color: #1ab79d;
+}
+
+.bg-gradient{
+    background: -webkit-linear-gradient(45deg, #c47309d8, #f1ae48);
+}
+
+.input-field {
+    background: #ffffff;
+    border-radius: 10px;
+}
+
+
+.btn-form:hover{
+    background: -webkit-linear-gradient(45deg, #13e27a, #1ab79d);
+}
+.position{
+    position: absolute;
+    top: -65px;
+}
