@@ -64,7 +64,7 @@ const NavBar = () => {
                             <ul tabIndex={0} className="menu menu-sm md:menu-lg dropdown-content z-[1] p-2 shadow bg-black rounded-box w-40">
                                 <li><a>Profile</a></li>
                                 <li><a>Settings</a></li>
-                                <li><a>Logout</a></li>
+                                <li><Link to='/login'>Login</Link></li>
                             </ul>
                         </div>
 
