@@ -66,7 +66,7 @@ const AllUsers = () => {
     }
 
     return (
-        <div className="h-full w-full max-w-5xl md:ms-16">
+        <div className="h-full w-full md:max-w-5xl md:ms-16">
             <Helmet>
                 <title>FlavourFly | All Users</title>
             </Helmet>

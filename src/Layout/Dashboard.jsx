@@ -12,6 +12,8 @@ const Dashboard = () => {
     // const isAdmin = true;
     const [isAdmin] = useAdmin();
 
+
+
     return (
         <div className="drawer lg:drawer-open w-full md:max-w-7xl">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
@@ -43,7 +45,7 @@ const Dashboard = () => {
                         isAdmin ? <>
                             <li className="my-5"><NavLink className="flex items-center gap-x-2"><FaHome></FaHome> Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/addItem' className="flex items-center gap-x-2"><FaUtensils></FaUtensils> Add Item</NavLink></li>
-                            <li className="my-5"><NavLink className="flex items-center gap-x-2"><FaCalendarAlt></FaCalendarAlt> Manage Items</NavLink></li>
+                            <li className="my-5"><NavLink to='/dashboard/manageitems' className="flex items-center gap-x-2"><FaCalendarAlt></FaCalendarAlt> Manage Items</NavLink></li>
                             <li><NavLink className="flex items-center gap-x-2"><FaCalendarCheck></FaCalendarCheck> Manage Bookings</NavLink></li>
                             <li className="my-5"><NavLink to='/dashboard/allusers' className="flex items-center gap-x-2"><FaUsers></FaUsers> All Users</NavLink></li>
 
