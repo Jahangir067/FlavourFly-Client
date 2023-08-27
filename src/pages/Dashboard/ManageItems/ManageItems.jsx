@@ -1,13 +1,13 @@
 import { Helmet } from "react-helmet-async";
-import useCart from "../../../hooks/useCart";
+import SectionTitle from "../../../components/SectionTitle/SectionTitle";
+import useMenu from "../../../hooks/useMenu";
 import { FaTrashAlt } from "react-icons/fa";
-import SectionTitle from '../../../components/SectionTitle/SectionTitle';
 import Swal from "sweetalert2";
-import { Link } from "react-router-dom";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-const MyCart = () => {
-    const [cart, refetch] = useCart();
-    const total = cart.reduce((sum, item) => item.price + sum, 0);
+const ManageItems = () => {
+    const [menu, , refetch] = useMenu();
+    const [axiosSecure] = useAxiosSecure();
 
     const handleDelete = item => {
         Swal.fire({
@@ -19,12 +19,9 @@ const MyCart = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`http://localhost:5000/carts/${item._id}`, {
-                    method: 'DELETE'
-                })
-                    .then(res => res.json())
-                    .then(data => {
-                        if (data.deletedCount > 0) {
+                axiosSecure.delete(`/menu/${item._id}`)
+                    .then(res => {
+                        if (res.data.deletedCount > 0) {
                             refetch();
                             Swal.fire(
                                 'Deleted!',
@@ -37,42 +34,40 @@ const MyCart = () => {
         })
 
     }
-
     return (
-        <div className="h-full w-full max-w-5xl md:ms-16">
+        <div className="h-full w-full md:ms-16">
             <Helmet>
-                <title>FlavourFly | My Cart</title>
+                <title>FlavourFly | Manage Item</title>
             </Helmet>
 
             <SectionTitle
-                subHeading={'My Cart'}
-                heading={'My Selected Item'}
+                subHeading={"Hurry Up"}
+                heading={'Manage All Items'}
             ></SectionTitle>
 
             <div className="font-semibold h-[70px] mx-4 md:mx-0  flex justify-between items-center">
-                <h3 className="md:text-2xl">Total Items: {cart.length}</h3>
-                <h3 className="md:text-2xl">Total Price: ${total}</h3>
-                <Link to='/dashboard/payment'><button className="btn btn-warning btn-sm md:me-28">Pay</button></Link>
+                <h3 className="text-2xl font-semibold">Total Items: {menu.length}</h3>
             </div>
 
             <div className="overflow-x-auto">
-                <table className="table w-full">
+                <table className="table h-full w-full">
                     {/* head */}
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Food</th>
-                            <th>Item Name</th>
+                            <th className="hidden md:block">#</th>
+                            <th>Item Image</th>
+                            <th>Category</th>
                             <th>Price</th>
-                            <th>Action</th>
+                            <th className="hidden md:block">Update</th>
+                            <th>Delete</th>
                         </tr>
                     </thead>
                     <tbody>
                         {
-                            cart.map((item, index) => <tr
+                            menu.map((item, index) => <tr
                                 key={item._id}
                             >
-                                <td>{index + 1}</td>
+                                <td className="hidden md:block">{index + 1}</td>
                                 <td>
                                     <div className="avatar">
                                         <div className="mask mask-squircle w-12 h-12">
@@ -80,10 +75,13 @@ const MyCart = () => {
                                         </div>
                                     </div>
                                 </td>
-                                <td>{item.name}</td>
+                                <td>{item.category}</td>
                                 <td>${item.price}</td>
+                                <td className="hidden md:block">
+                                    <button className="btn text-2xl btn-ghost text-red-600"><FaTrashAlt></FaTrashAlt></button>
+                                </td>
                                 <td>
-                                    <button onClick={() => handleDelete(item)} className="btn btn-ghost bg-red-600 text-white"><FaTrashAlt></FaTrashAlt></button>
+                                    <button onClick={() => handleDelete(item)} className="btn text-2xl btn-ghost text-red-500"><FaTrashAlt></FaTrashAlt></button>
                                 </td>
                             </tr>)
                         }
@@ -97,4 +95,4 @@ const MyCart = () => {
     );
 };
 
-export default MyCart;
+export default ManageItems;

@@ -78,11 +78,11 @@ const AddItem = () => {
                         {...register("category", { required: true })} required
                         className="block w-full p-2 mb-6 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
                             <option disabled>Choose a Category</option>
-                            <option value='Pizza'>Pizza</option>
-                            <option value='Soup'>Soup</option>
-                            <option value='Salad'>Salad</option>
-                            <option value='Dessert'>Dessert</option>
-                            <option value='Drinks'>Drinks</option>
+                            <option value='pizza'>Pizza</option>
+                            <option value='soup'>Soup</option>
+                            <option value='salad'>Salad</option>
+                            <option value='dessert'>Dessert</option>
+                            <option value='drinks'>Drinks</option>
                         </select>
                     </div>
 
