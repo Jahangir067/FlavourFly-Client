@@ -43,14 +43,14 @@ const Dashboard = () => {
                     {/* Sidebar content here */}
                     {
                         isAdmin ? <>
-                            <li className="my-5"><NavLink className="flex items-center gap-x-2"><FaHome></FaHome> Admin Home</NavLink></li>
+                            <li className="my-5"><NavLink to='/dashboard/adminhome' className="flex items-center gap-x-2"><FaHome></FaHome> Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/addItem' className="flex items-center gap-x-2"><FaUtensils></FaUtensils> Add Item</NavLink></li>
                             <li className="my-5"><NavLink to='/dashboard/manageitems' className="flex items-center gap-x-2"><FaCalendarAlt></FaCalendarAlt> Manage Items</NavLink></li>
                             <li><NavLink className="flex items-center gap-x-2"><FaCalendarCheck></FaCalendarCheck> Manage Bookings</NavLink></li>
                             <li className="my-5"><NavLink to='/dashboard/allusers' className="flex items-center gap-x-2"><FaUsers></FaUsers> All Users</NavLink></li>
 
                         </> : <>
-                            <li><NavLink className="flex items-center gap-x-2"><FaHome></FaHome> User Home</NavLink></li>
+                            <li><NavLink to='/dashboard/userhome' className="flex items-center gap-x-2"><FaHome></FaHome> User Home</NavLink></li>
                             <li><NavLink to='/dashboard/mycart' className="flex items-center gap-x-2 my-5"><FaShoppingCart></FaShoppingCart> My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink>
                             </li>
                             <li><NavLink className="flex items-center gap-x-2"><FaWallet></FaWallet> Payment History</NavLink></li>

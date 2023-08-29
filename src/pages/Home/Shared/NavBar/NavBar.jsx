@@ -4,6 +4,7 @@ import { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../../../providers/AuthProvider';
 import useCart from '../../../../hooks/useCart';
+import useAdmin from '../../../../hooks/useAdmin';
 
 
 const NavBar = () => {
@@ -11,6 +12,7 @@ const NavBar = () => {
     const [toggle, setToggle] = useState(false);
     const [avatar, setAvatar] = useState(false);
     const [cart] = useCart();
+    const [isAdmin] = useAdmin();
 
     const handleLogOut = () => {
         logOut()
@@ -61,7 +63,7 @@ const NavBar = () => {
                 transition={{ duration: 1.50 }}
                 className="navbar-end md:me-20">
                 <div className="flex-none">
-                    <Link to='/dashboard/mycart'>
+                    <Link>
                         <div className="dropdown dropdown-end">
                             <label tabIndex={0} className="btn btn-ghost btn-circle">
                                 <div className="indicator">
@@ -80,7 +82,7 @@ const NavBar = () => {
                         </label>
                         <ul tabIndex={0} className={`${avatar ? 'block' : 'hidden'} menu menu-sm md:menu-lg dropdown-content z-[1] p-2 shadow bg-black rounded-box w-40`}>
                             <li onClick={() => setAvatar(!avatar)}><a>Profile</a></li>
-                            <li onClick={() => setAvatar(!avatar)}><Link to='dashboard/mycart'>Dashboard</Link></li>
+                            <li onClick={() => setAvatar(!avatar)}><Link to={isAdmin ? '/dashboard/adminhome' : '/dashboard/userhome'}>Dashboard</Link></li>
                             {
                                 user ? <>
                                     <li onClick={handleLogOut}><a>Logout</a></li>
