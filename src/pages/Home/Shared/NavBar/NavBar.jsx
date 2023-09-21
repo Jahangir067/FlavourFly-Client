@@ -25,7 +25,7 @@ const NavBar = () => {
         <li onClick={() => setToggle(!toggle)}><Link to='/'>Home</Link></li>
         <li onClick={() => setToggle(!toggle)}><Link to='/menu'>Our Menu</Link></li>
         <li onClick={() => setToggle(!toggle)}><Link to='/order/salad'>Order Food</Link></li>
-        <li onClick={() => setToggle(!toggle)}><a>Contact Us</a></li>
+        <li onClick={() => setToggle(!toggle)}><Link to='/contact'>Contact</Link></li>
     </>
 
     return (

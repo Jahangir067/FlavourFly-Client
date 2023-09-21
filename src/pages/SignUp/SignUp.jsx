@@ -8,12 +8,17 @@ import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../providers/AuthProvider";
 import Swal from "sweetalert2";
 import SocialLogin from "../Home/Shared/SocialLogin/SocialLogin";
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
+
 
 const SignUp = () => {
     const { register, handleSubmit, reset, formState: { errors } } = useForm();
     const [passwordMatchError, setPasswordMatchError] = useState(false);
     const { createUser, updateUserProfile } = useContext(AuthContext);
     const navigate = useNavigate();
+    const [showPassword, setShowPassword] = useState(false);
+    const [visible, setVisible] = useState(false);
+
 
 
     const onSubmit = data => {
@@ -30,7 +35,7 @@ const SignUp = () => {
                 updateUserProfile(data.name)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email }
-                        fetch(`http://localhost:5000/users`, {
+                        fetch(`https://flavour-fly-server.vercel.app/users`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'
@@ -55,6 +60,13 @@ const SignUp = () => {
                     })
                     .catch(error => console.log(error))
             })
+    };
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+    const toggleConfirmVisibility = () => {
+        setVisible(!visible);
     };
 
     return (
@@ -109,7 +121,7 @@ const SignUp = () => {
 
                         <div className="relative z-0 w-full mb-6 group">
                             <input
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 {...register("password", {
                                     required: true,
                                     minLength: 6,
@@ -122,6 +134,9 @@ const SignUp = () => {
                                 placeholder=" "
                                 required
                             />
+                             <span className="relative flex justify-end -top-10 overflow-hidden" onClick={togglePasswordVisibility}>
+                                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                            </span>
                             {errors.password?.type === 'minLength' && <span className="text-red-500 font-serif text-xs">Password Must be 6 Character</span>}
                             {errors.password?.type === 'pattern' && <span className="text-red-500 font-serif text-xs">Password must have one uppercase, one lowercase, one number and one special character</span>}
                             <label
@@ -134,7 +149,7 @@ const SignUp = () => {
 
                         <div className="relative z-0 w-full mb-6 group">
                             <input
-                                type="password"
+                                type={visible ? 'text' : 'password'}
                                 name="password2"
                                 {...register("password2")}
                                 id="floating_password"
@@ -142,6 +157,9 @@ const SignUp = () => {
                                 placeholder=" "
                                 required
                             />
+                             <span className="relative flex justify-end -top-10 overflow-hidden" onClick={toggleConfirmVisibility}>
+                                {visible ? <RiEyeOffFill /> : <RiEyeFill />}
+                            </span>
                             {errors.password2 && <span className="text-red-500 font-serif text-xs">Password is required</span>}
                             {passwordMatchError && (
                                 <span className="text-red-500 font-serif text-xs">Passwords do not match</span>

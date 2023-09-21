@@ -1,4 +1,4 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import {
     FaUserAlt,
 } from "react-icons/fa";
@@ -6,8 +6,10 @@ import { AuthContext } from "../../providers/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import SocialLogin from "../Home/Shared/SocialLogin/SocialLogin";
+import { RiEyeFill, RiEyeOffFill } from 'react-icons/ri';
 
 const Login = () => {
+    const [showPassword, setShowPassword] = useState(false);
     const { signIn } = useContext(AuthContext);
     const navigate = useNavigate();
     const location = useLocation();
@@ -30,11 +32,15 @@ const Login = () => {
                     title: 'You have Successfully Login',
                     showConfirmButton: false,
                     timer: 1500
-                  });
-                  navigate(from, {replace: true});
+                });
+                navigate(from, { replace: true });
             })
 
     }
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     return (
         <div>
@@ -63,16 +69,19 @@ const Login = () => {
                         </div>
                         <div className="relative z-0 w-full mb-6 group">
                             <input
-                                type="password"
+                                type={showPassword ? 'text' : 'password'}
                                 name="password"
                                 id="floating_password"
                                 className="block py-2.5 pl-4 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                                 placeholder=" "
                                 required
                             />
+                            <span className="relative flex justify-end -top-10 overflow-hidden" onClick={togglePasswordVisibility}>
+                                {showPassword ? <RiEyeOffFill /> : <RiEyeFill />}
+                            </span>
                             <label
                                 htmlFor="floating_password"
-                                className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+                                className="peer-focus:font-medium  absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-0 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
                             >
                                 Password*
                             </label>
@@ -104,8 +113,8 @@ const Login = () => {
                             </p></Link>
                         </span>
                     </div>
-                  
-                   <SocialLogin></SocialLogin>
+
+                    <SocialLogin></SocialLogin>
                 </div>
             </div>
         </div>

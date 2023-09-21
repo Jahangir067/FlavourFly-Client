@@ -1,7 +1,8 @@
 import { Helmet } from "react-helmet-async";
 import SectionTitle from "../../../components/SectionTitle/SectionTitle";
 import useMenu from "../../../hooks/useMenu";
-import { FaTrashAlt, FaRegPenToSquare } from "react-icons/fa";
+import { FaTrashAlt } from "react-icons/fa";
+import { AiOutlineEdit } from "react-icons/ai";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
@@ -78,7 +79,7 @@ const ManageItems = () => {
                                 <td>{item.category}</td>
                                 <td>${item.price}</td>
                                 <td className="hidden md:block">
-                                    <button className="btn text-2xl btn-ghost text-red-600"><FaRegPenToSquare></FaRegPenToSquare></button>
+                                    <button className="btn text-2xl btn-ghost text-red-600"><AiOutlineEdit /></button>
                                 </td>
                                 <td>
                                     <button onClick={() => handleDelete(item)} className="btn text-2xl btn-ghost text-red-500"><FaTrashAlt></FaTrashAlt></button>

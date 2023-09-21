@@ -1,5 +1,5 @@
 import { Link, NavLink, Outlet } from "react-router-dom";
-import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaCalendarCheck, FaCalendarDay, FaShoppingBag, FaUserClock, FaUtensils,  FaUsers } from 'react-icons/fa';
+import { FaShoppingCart, FaWallet, FaCalendarAlt, FaHome, FaCalendarCheck, FaShoppingBag, FaUserClock, FaUtensils,  FaUsers } from 'react-icons/fa';
 import { FiMenu } from 'react-icons/fi';
 import useCart from "../hooks/useCart";
 import useAdmin from "../hooks/useAdmin";
@@ -46,17 +46,16 @@ const Dashboard = () => {
                             <li className="my-5"><NavLink to='/dashboard/adminhome' className="flex items-center gap-x-2"><FaHome></FaHome> Admin Home</NavLink></li>
                             <li><NavLink to='/dashboard/addItem' className="flex items-center gap-x-2"><FaUtensils></FaUtensils> Add Item</NavLink></li>
                             <li className="my-5"><NavLink to='/dashboard/manageitems' className="flex items-center gap-x-2"><FaCalendarAlt></FaCalendarAlt> Manage Items</NavLink></li>
-                            <li><NavLink className="flex items-center gap-x-2"><FaCalendarCheck></FaCalendarCheck> Manage Bookings</NavLink></li>
                             <li className="my-5"><NavLink to='/dashboard/allusers' className="flex items-center gap-x-2"><FaUsers></FaUsers> All Users</NavLink></li>
 
                         </> : <>
                             <li><NavLink to='/dashboard/userhome' className="flex items-center gap-x-2"><FaHome></FaHome> User Home</NavLink></li>
                             <li><NavLink to='/dashboard/mycart' className="flex items-center gap-x-2 my-5"><FaShoppingCart></FaShoppingCart> My Cart<span className="badge badge-secondary">+{cart?.length || 0}</span></NavLink>
                             </li>
-                            <li><NavLink className="flex items-center gap-x-2"><FaWallet></FaWallet> Payment History</NavLink></li>
-                            <li className="my-5"><NavLink className="flex items-center gap-x-2"><FaCalendarAlt></FaCalendarAlt> Reservation</NavLink></li>
-                            <li><NavLink className="flex items-center gap-x-2"><FaCalendarCheck></FaCalendarCheck> Add a Review</NavLink></li>
-                            <li className="my-5"><NavLink className="flex items-center gap-x-2"><FaCalendarDay></FaCalendarDay> My Booking</NavLink></li>
+                            <li><NavLink to='/dashboard/paymenthistory' className="flex items-center gap-x-2"><FaWallet></FaWallet> Payment History</NavLink></li>
+                            
+                            <li><NavLink to='/dashboard/review' className="flex items-center gap-x-2 mt-5"><FaCalendarCheck></FaCalendarCheck> Add a Review</NavLink></li>
+                            
                         </>
                     }
 

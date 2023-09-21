@@ -15,7 +15,7 @@ const FoodCard = ({ item }) => {
            console.log(item);
            if(user && user.email) {
             const cartItem = {menuItemId: _id, name, image, price, email: user.email}
-            fetch('http://localhost:5000/carts', {
+            fetch('https://flavour-fly-server.vercel.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type' : 'application/json'
@@ -64,8 +64,8 @@ const FoodCard = ({ item }) => {
 
     return (
         <div>
-            <div className="card w-full h-full bg-base-100 shadow-2xl border-b-4 border-x-2 border-x-cyan-500 border-b-sky-600 border-t-4 border-t-sky-600 shadow-blue-800">
-                <figure><img className="w-full transition duration-300 ease-in-out hover:scale-110" src={image} alt="Shoes" /></figure>
+            <div className="card w-full h-full bg-base-100 shadow-2xl border-b-4  border-x-cyan-500 border-b-sky-600 border-t-4 border-t-sky-600 shadow-blue-800">
+                <figure><img className="w-full transition duration-300 ease-in-out hover:scale-110" src={image} alt="Image" /></figure>
                 <p className="absolute right-0 mr-12 mt-4 p-4 badge bg-black text-white">${price}</p>
                 <div className="card-body">
                     <div className="flex justify-between">
