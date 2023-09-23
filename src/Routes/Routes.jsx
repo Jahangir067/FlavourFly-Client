@@ -20,11 +20,13 @@ import AdminHome from "../pages/Dashboard/AdminHome/AdminHome";
 import History from "../pages/Dashboard/History/History";
 import Review from "../pages/Dashboard/Review/Review";
 import Contact from "../pages/Contact/Contact";
+import NotFound from "../pages/Home/Shared/NotFound/NotFound";
 
   export const router = createBrowserRouter([
     {
       path: "/",
       element: <Main></Main>,
+      errorElement: <NotFound></NotFound>,
       children: [
         {
             path: '/',
