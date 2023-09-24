@@ -4,7 +4,7 @@ import useAuth from './useAuth';
 import { useEffect } from 'react';
 
 const axiosSecure = axios.create({
-  baseURL: 'https://flavour-fly-server.vercel.app/', 
+  baseURL: 'https://flavourfly-server.up.railway.app/', 
 });
 
 const useAxiosSecure = () => {

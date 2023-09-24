@@ -15,7 +15,7 @@ const FoodCard = ({ item }) => {
            console.log(item);
            if(user && user.email) {
             const cartItem = {menuItemId: _id, name, image, price, email: user.email}
-            fetch('https://flavour-fly-server.vercel.app/carts', {
+            fetch('https://flavourfly-server.up.railway.app/carts', {
                 method: 'POST',
                 headers: {
                     'content-type' : 'application/json'

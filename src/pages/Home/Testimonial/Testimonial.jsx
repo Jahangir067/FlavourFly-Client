@@ -12,7 +12,7 @@ const Testimonial = () => {
     const [reviews, setReviews] = useState([]);
 
     useEffect(() => {
-        fetch('https://flavour-fly-server.vercel.app/reviews')
+        fetch('https://flavourfly-server.up.railway.app/reviews')
             .then(res => res.json())
             .then(data => setReviews(data))
     }, [])

@@ -16,7 +16,7 @@ const AllUsers = () => {
 
 
     const handleMakeAdmin = user => {
-        fetch(`https://flavour-fly-server.vercel.app/users/admin/${user._id}`, {
+        fetch(`https://flavourfly-server.up.railway.app/users/admin/${user._id}`, {
             method: 'PATCH',
         })
             .then(res => res.json())
@@ -46,7 +46,7 @@ const AllUsers = () => {
             confirmButtonText: 'Yes, delete it!'
         }).then((result) => {
             if (result.isConfirmed) {
-                fetch(`https://flavour-fly-server.vercel.app/users/admin/${user._id}`, {
+                fetch(`https://flavourfly-server.up.railway.app/users/admin/${user._id}`, {
                     method: 'DELETE'
                 })
                     .then(res => res.json())

@@ -35,7 +35,7 @@ const SignUp = () => {
                 updateUserProfile(data.name)
                     .then(() => {
                         const saveUser = { name: data.name, email: data.email }
-                        fetch(`https://flavour-fly-server.vercel.app/users`, {
+                        fetch(`https://flavourfly-server.up.railway.app/users`, {
                             method: 'POST',
                             headers: {
                                 'content-type': 'application/json'

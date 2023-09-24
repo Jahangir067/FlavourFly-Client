@@ -18,7 +18,7 @@ const SocialLogin = () => {
                 console.log(loggedInUser);
                 const saveUser = { name: loggedInUser.displayName, email: loggedInUser.email }
 
-                fetch(`https://flavour-fly-server.vercel.app/users`, {
+                fetch(`https://flavourfly-server.up.railway.app/users`, {
                     method: 'POST',
                     headers: {
                         'content-type': 'application/json'
