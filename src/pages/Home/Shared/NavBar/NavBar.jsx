@@ -1,10 +1,11 @@
 
 import { motion } from 'framer-motion';
 import { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../../../providers/AuthProvider';
 import useCart from '../../../../hooks/useCart';
 import useAdmin from '../../../../hooks/useAdmin';
+import Swal from 'sweetalert2';
 
 
 const NavBar = () => {
@@ -13,11 +14,38 @@ const NavBar = () => {
     const [avatar, setAvatar] = useState(false);
     const [cart] = useCart();
     const [isAdmin] = useAdmin();
+    const navigate = useNavigate();
 
     const handleLogOut = () => {
         logOut()
             .then(() => { })
             .catch(error => console.log(error))
+    }
+
+    const handleClick = () => {
+        if (!user && !isAdmin) {
+            Swal.fire({
+                title: 'Please Login First',
+                text: "You won't be able to order without login!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Login Now'
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  navigate('/login')
+                }
+              })
+        }
+
+        if (isAdmin) {
+            navigate('/dashboard/adminhome')
+        }
+
+        if (user && !isAdmin) {
+            navigate('dashboard/userhome')
+        }
     }
 
 
@@ -82,10 +110,10 @@ const NavBar = () => {
                         </label>
                         <ul tabIndex={0} className={`${avatar ? 'block' : 'hidden'} menu menu-sm md:menu-lg dropdown-content z-[1] p-2 shadow bg-black rounded-box w-40`}>
                             <li onClick={() => setAvatar(!avatar)}><a>Profile</a></li>
-                            <li onClick={() => setAvatar(!avatar)}><Link to={isAdmin ? '/dashboard/adminhome' : '/dashboard/userhome'}>Dashboard</Link></li>
+                            <li onClick={handleClick}><a>Dashboard</a></li>
                             {
                                 user ? <>
-                                    <li onClick={handleLogOut}><a>Logout</a></li>
+                                    <li onClick={handleLogOut}>Logout</li>
 
                                 </> : <>
                                     <li><Link to='/login'>Login</Link></li>
